@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-
   get 'about/index'
   root to: 'products#index'
   get '/about', to: 'about#index', as: 'about'
+  get '/categories/:id', to: 'categories#show', as: 'category'
 
-  
 
   resources :products, only: [:index, :show]
   resources :categories, only: [:show]
+  resources :categories, except: [:show]
 
   resource :cart, only: [:show] do
     post :add_item
@@ -19,12 +19,12 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'dashboard#show'
     resources :products, except: [:edit, :update, :show]
-    resources :categories, except: [:edit, :update, :destroy]
+    resources :categories, only: [:index, :new, :create]
   end
 
   # Other routes...
-
 end
+
 
 
 

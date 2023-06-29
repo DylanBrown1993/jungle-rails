@@ -1,0 +1,9 @@
+<h1><%= @category.name %></h1>
+<p>Number of products: <%= @products.size %></p>
+
+<!-- Display the products related to the category -->
+<ul>
+  <% @products.each do |product| %>
+    <li><%= product.name %></li>
+  <% end %>
+</ul>
