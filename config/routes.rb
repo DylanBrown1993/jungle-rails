@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
   get 'about/index'
+
   root to: 'products#index'
   get '/about', to: 'about#index', as: 'about'
   get '/categories/:id', to: 'categories#show', as: 'category'
 
-
   resources :products, only: [:index, :show]
   resources :categories, only: [:show]
   resources :categories, except: [:show]
+  resources :users, only: [:new, :create]
+  resources :sessions, only: [:new, :create]
+  delete '/logout', to: 'sessions#destroy', as: :logout
+  get '/login', to: 'sessions#new', as: 'login'
 
   resource :cart, only: [:show] do
     post :add_item
@@ -24,6 +28,7 @@ Rails.application.routes.draw do
 
   # Other routes...
 end
+
 
 
 
