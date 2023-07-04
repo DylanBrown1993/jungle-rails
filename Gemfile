@@ -56,6 +56,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 5.1'
   gem 'net-smtp', require: false
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem "cypress-rails"
+  gem 'database_cleaner-active_record'
   gem 'dotenv-rails'
 end
 
