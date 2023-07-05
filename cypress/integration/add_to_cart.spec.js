@@ -12,14 +12,16 @@ describe("Home page", () => {
   });
 });
 
-describe("Product details page", () => {
+describe("Add to cart functionality", () => {
   beforeEach(() => {
     cy.seedAndVisit(); 
   });
 
-  it("should navigate to product details page", () => {
-    cy.get(".products article").first().click(); 
-    cy.url().should("include", "/products/"); 
-    cy.get(".product-detail").should("be.visible"); 
+  it("should increase cart count when adding a product", () => {
+    cy.get(".products article").first().within(() => {
+      cy.contains("Add to Cart").click(); 
+    });
+
+    cy.get(".cart-count").should("contain", "1"); 
   });
 });
